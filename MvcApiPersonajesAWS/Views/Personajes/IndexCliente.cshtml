@@ -1,0 +1,58 @@
+﻿@section Scripts{ 
+    <script>
+        $(document).ready(function () {
+            $("#botonLoad").click(function () {
+                var url = "https://44.200.227.142/";
+                $.get(url + "api/personajes", function (data) {
+                    var html = "";
+                    $.each(data, function (index, personaje) {
+                        html += "<tr>";
+                        html += "<td>" + personaje.nombre + "</td>";
+                        html += "<td>";
+                        html += "<img src='" + personaje.imagen + "' style='width:150px;height:150px;'/>";
+                        html += "</td>";
+                        html += "</tr>";
+                    });
+                    $("#tablaPersonajes tbody").html(html);
+                });
+                        
+                
+                //$.ajax({
+                //    type: "GET",
+                //    url: url + "api/personajes",
+                //    dataType: "application/json",
+                //    success: function (data) {
+                //        var html = "";
+                //        $.each(data, function (index, personaje) {
+                //            html += "<tr>";
+                //            html += "<td>" + personaje.nombre + "</td>";
+                //            html += "<td>";
+                //            html += "<img src='" + personaje.imagen + "' style='width:150px;height:150px;'/>";
+                //            html += "</td>";
+                //            html += "</tr>";
+                //        });
+                //        $("#tablaPersonajes tbody").html(html);
+                //    }
+                //});
+            });
+        });
+    </script>
+}
+
+<h1 style="color:blue">
+    AWS RDS Api Personajes
+</h1>
+
+<button type="button" id="botonLoad" class="btn btn-info">
+    Cargar Personajes
+</button>
+
+<table class="table table-bordered" id="tablaPersonajes">
+    <thead>
+        <tr>
+            <th>Personaje</th>
+            <th>Imagen</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
